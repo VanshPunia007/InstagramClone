@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286174182361",
+    "project_id": "instagram-ea9a3",
+    "storage_bucket": "instagram-ea9a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286174182361:android:deb04e216670b93ccbf7c8",
+        "android_client_info": {
+          "package_name": "com.vanshpunia.instagram"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxNtFrI70C2pUhuVBXM_q9dRatc0fxNjE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
