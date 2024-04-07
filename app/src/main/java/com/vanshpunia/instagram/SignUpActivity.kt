@@ -1,5 +1,6 @@
 package com.vanshpunia.instagram
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.animation.RotateAnimation
@@ -23,9 +24,16 @@ class SignUpActivity : AppCompatActivity() {
     lateinit var user: User
 
     private val launcher = registerForActivityResult(ActivityResultContracts.GetContent()){
-        uri ->
+        uri->
         uri?.let {
-            user.image = uploadImage(uri, USER_PROFILE_FOLDER)
+            uploadImage(uri, USER_PROFILE_FOLDER) {
+                if(it == null){
+
+                }else{
+                    user.image = it
+                    binding.profileImage.setImageURI(uri)
+                }
+            }
         }
     }
 
@@ -33,6 +41,9 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         user = User()
+        binding.profileImage.setOnClickListener {
+            launcher.launch("image/*")
+        }
         binding.signUpBtn.setOnClickListener {
             if(binding.name.editText?.text.toString().equals("") or
                 binding.email.editText?.text.toString().equals("")  or
@@ -54,7 +65,7 @@ class SignUpActivity : AppCompatActivity() {
                         Firebase.firestore.collection(USER_NODE)
                             .document(Firebase.auth.currentUser!!.uid).set(user)
                             .addOnSuccessListener {
-                                Toast.makeText(this@SignUpActivity, "Login Successfull", Toast.LENGTH_SHORT).show()
+                                startActivity(Intent(this@SignUpActivity, HomeActivity:: class.java))
                             }
                     }else{
                         Toast.makeText(this@SignUpActivity,
@@ -63,8 +74,6 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-        binding.profileImage.setOnClickListener {
-            launcher.launch("image/*")
-        }
+
     }
 }
