@@ -1,8 +1,10 @@
 package com.vanshpunia.instagram
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Html
 import android.view.animation.RotateAnimation
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContract
@@ -44,6 +46,8 @@ class SignUpActivity : AppCompatActivity() {
         binding.profileImage.setOnClickListener {
             launcher.launch("image/*")
         }
+        binding.login.text = Html.fromHtml("<font color=${Color.BLACK}>Already have an account? </font>" +
+                "<font color=#1E88E5> Login</font>")
         binding.signUpBtn.setOnClickListener {
             if(binding.name.editText?.text.toString().equals("") or
                 binding.email.editText?.text.toString().equals("")  or
@@ -66,6 +70,7 @@ class SignUpActivity : AppCompatActivity() {
                             .document(Firebase.auth.currentUser!!.uid).set(user)
                             .addOnSuccessListener {
                                 startActivity(Intent(this@SignUpActivity, HomeActivity:: class.java))
+                                finish()
                             }
                     }else{
                         Toast.makeText(this@SignUpActivity,
@@ -74,6 +79,9 @@ class SignUpActivity : AppCompatActivity() {
                 }
             }
         }
-
+        binding.login.setOnClickListener {
+            startActivity(Intent(this@SignUpActivity, LoginActivity:: class.java))
+            finish()
+        }
     }
 }
