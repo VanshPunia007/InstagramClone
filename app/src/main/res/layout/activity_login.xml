@@ -82,7 +82,7 @@
         android:backgroundTint="@color/white"
         android:elevation="20dp"
         android:shadowColor="@android:color/transparent"
-        android:text="Login"
+        android:text="Create Account"
         android:textColor="@color/blue"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
