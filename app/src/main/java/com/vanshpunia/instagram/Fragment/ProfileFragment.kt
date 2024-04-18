@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
@@ -15,10 +16,12 @@ import com.vanshpunia.instagram.Models.User
 import com.vanshpunia.instagram.R
 import com.vanshpunia.instagram.SignUpActivity
 import com.vanshpunia.instagram.Utils.USER_NODE
+import com.vanshpunia.instagram.ViewPagerAdapter
 import com.vanshpunia.instagram.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
     private lateinit var binding : FragmentProfileBinding
+    private lateinit var viewPagerAdapter: ViewPagerAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,6 +39,13 @@ class ProfileFragment : Fragment() {
             activity?.startActivity(intent)
             activity?.finish()
         }
+
+        viewPagerAdapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
+        viewPagerAdapter.addFragment(MyPostsFragment(), "My Posts")
+        viewPagerAdapter.addFragment(MyReelsFragment(), "My Reels")
+        binding.viewPager.adapter = viewPagerAdapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+
         return binding.root
     }
 
