@@ -15,7 +15,7 @@
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
 
-    <fragment
+    <dialog
         android:id="@+id/add"
         android:name="com.vanshpunia.instagram.Fragment.AddFragment"
         android:label="fragment_add"
