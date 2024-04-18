@@ -44,8 +44,10 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         user = User()
-        if (intent.hasExtra("Mode")) {
-            if (intent.getIntExtra("Mode", -1) == 1) {
+        if (intent.hasExtra("MODE")) {
+            if (intent.getIntExtra("MODE", -1) == 1) {
+                binding.email.isEnabled = false
+                binding.password.isEnabled = false
                 binding.signUpBtn.text = "Update Profile"
                 Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid)
                     .get().addOnSuccessListener {
@@ -53,6 +55,9 @@ class SignUpActivity : AppCompatActivity() {
                         if (!user.image.isNullOrEmpty()) {
                             Picasso.get().load(user.image).into(binding.profileImage)
                         }
+                        binding.name.editText?.setText(user.name)
+                        binding.email.editText?.setText(user.email)
+                        binding.password.editText?.setText(user.password)
                     }
 
             }
@@ -65,8 +70,9 @@ class SignUpActivity : AppCompatActivity() {
                     "<font color=#1E88E5> Login</font>"
         )
         binding.signUpBtn.setOnClickListener {
-            if(intent.hasExtra("Mode")){
-                if(intent.getIntExtra("Mode", -1) == 1){
+            if(intent.hasExtra("MODE")){
+                if(intent.getIntExtra("MODE", -1) == 1){
+                    user.name = binding.name.editText?.text.toString()
                     Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid)
                         .set(user).addOnSuccessListener {
                             startActivity(Intent(this, HomeActivity::class.java))
