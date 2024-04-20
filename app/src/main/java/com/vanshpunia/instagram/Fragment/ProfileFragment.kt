@@ -6,17 +6,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
 import com.squareup.picasso.Picasso
 import com.vanshpunia.instagram.Models.User
-import com.vanshpunia.instagram.R
 import com.vanshpunia.instagram.SignUpActivity
 import com.vanshpunia.instagram.Utils.USER_NODE
-import com.vanshpunia.instagram.ViewPagerAdapter
+import com.vanshpunia.instagram.Adapters.ViewPagerAdapter
 import com.vanshpunia.instagram.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {

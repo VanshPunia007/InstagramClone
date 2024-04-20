@@ -1,4 +1,4 @@
-package com.vanshpunia.instagram
+package com.vanshpunia.instagram.Adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
