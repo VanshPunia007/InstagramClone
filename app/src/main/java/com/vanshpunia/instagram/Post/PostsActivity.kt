@@ -1,5 +1,6 @@
 package com.vanshpunia.instagram.Post
 
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +8,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
+import com.vanshpunia.instagram.HomeActivity
 import com.vanshpunia.instagram.Models.Post
 import com.vanshpunia.instagram.Utils.POST
 import com.vanshpunia.instagram.Utils.POST_FOLDER
@@ -47,10 +49,14 @@ class PostsActivity : AppCompatActivity() {
             val post: Post = Post(imageUrl!!, binding.caption.editText?.text.toString())
             Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
                 Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
+                    startActivity(Intent(this@PostsActivity, HomeActivity::class.java))
                     finish()
                 }
             }
         }
-
+        binding.cancel.setOnClickListener {
+            startActivity(Intent(this@PostsActivity, HomeActivity::class.java))
+            finish()
+        }
     }
 }
