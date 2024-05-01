@@ -10,6 +10,7 @@
         android:id="@+id/materialToolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:background="@color/white"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +24,7 @@
         android:layout_height="350dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/post_image"
+        android:src="@drawable/post"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -61,6 +62,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="#FFFFFF"
         android:orientation="horizontal"
         app:circularflow_defaultRadius="20dp"
         app:circularflow_radiusInDP="20dp"
@@ -109,7 +111,7 @@
 
         <Button
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:id="@+id/cancel"
+            android:id="@+id/button"
             app:strokeColor="@color/pink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,12 +124,12 @@
 
 
         <Button
-            android:id="@+id/post"
+            android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Post"
+            android:text="Button"
             android:backgroundTint="@color/blue"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
