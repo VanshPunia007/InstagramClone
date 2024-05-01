@@ -1,13 +1,12 @@
 package com.vanshpunia.instagram.Models
 
-class Post {
-    var postUrl: String = ""
+class Reel {
+    var reelUrl: String = ""
     var caption: String = ""
 
     constructor()
-    constructor(postUrl: String, caption: String) {
-        this.postUrl = postUrl
+    constructor(reelUrl: String, caption: String) {
+        this.reelUrl = reelUrl
         this.caption = caption
     }
-
 }

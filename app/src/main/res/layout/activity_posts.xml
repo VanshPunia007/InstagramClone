@@ -24,7 +24,7 @@
         android:layout_height="350dp"
         android:layout_marginTop="20dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/post"
+        android:src="@drawable/post_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,7 +111,7 @@
 
         <Button
             style="@style/Widget.Material3.Button.OutlinedButton"
-            android:id="@+id/button"
+            android:id="@+id/cancel"
             app:strokeColor="@color/pink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,12 +124,12 @@
 
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/post"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="10dp"
-            android:text="Button"
+            android:text="Post"
             android:backgroundTint="@color/blue"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
