@@ -8,10 +8,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
+import com.google.firebase.firestore.toObject
 import com.vanshpunia.instagram.HomeActivity
 import com.vanshpunia.instagram.Models.Post
+import com.vanshpunia.instagram.Models.User
 import com.vanshpunia.instagram.Utils.POST
 import com.vanshpunia.instagram.Utils.POST_FOLDER
+import com.vanshpunia.instagram.Utils.USER_NODE
 import com.vanshpunia.instagram.Utils.uploadImage
 import com.vanshpunia.instagram.databinding.ActivityPostsBinding
 
@@ -47,11 +50,21 @@ class PostsActivity : AppCompatActivity() {
             launcher.launch("image/*")
         }
         binding.post.setOnClickListener {
-            val post: Post = Post(imageUrl!!, binding.caption.editText?.text.toString())
-            Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
-                Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
-                    startActivity(Intent(this@PostsActivity, HomeActivity::class.java))
-                    finish()
+            Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get().addOnSuccessListener {
+                var user = it.toObject<User>()!!
+
+                var imgUrl : String = imageUrl!!
+                var caption : String = binding.caption.editText?.text.toString()
+                var uid = Firebase.auth.currentUser!!.uid
+                var time = System.currentTimeMillis().toString()
+
+                val post: Post = Post(imgUrl, caption, uid, time)
+
+                Firebase.firestore.collection(POST).document().set(post).addOnSuccessListener {
+                    Firebase.firestore.collection(Firebase.auth.currentUser!!.uid).document().set(post).addOnSuccessListener {
+                        startActivity(Intent(this@PostsActivity, HomeActivity::class.java))
+                        finish()
+                    }
                 }
             }
         }

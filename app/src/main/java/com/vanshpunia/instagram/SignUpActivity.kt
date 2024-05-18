@@ -98,24 +98,14 @@ class SignUpActivity : AppCompatActivity() {
                     ).addOnCompleteListener { result ->
 
                         if (result.isSuccessful) {
-                            Toast.makeText(
-                                this@SignUpActivity,
-                                "Login Successful",
-                                Toast.LENGTH_SHORT
-                            )
-                                .show()
+                            Toast.makeText(this@SignUpActivity, "Login Successful", Toast.LENGTH_SHORT).show()
                             user.name = binding.name.editText?.text.toString()
                             user.email = binding.email.editText?.text.toString()
                             user.password = binding.password.editText?.text.toString()
                             Firebase.firestore.collection(USER_NODE)
                                 .document(Firebase.auth.currentUser!!.uid).set(user)
                                 .addOnSuccessListener {
-                                    startActivity(
-                                        Intent(
-                                            this@SignUpActivity,
-                                            HomeActivity::class.java
-                                        )
-                                    )
+                                    startActivity(Intent(this@SignUpActivity, HomeActivity::class.java))
                                     finish()
                                 }
                         } else {

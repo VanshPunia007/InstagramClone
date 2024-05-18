@@ -4,7 +4,16 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:statusBarColor">@android:color/transparent</item>
+
     </style>
 
+    <style name="toolbar_text">
+
+        <item name="android:fontFamily">@font/alex_brush</item>
+        <item name="android:textSize">35dp</item>
+        <item name="android:textColor">@color/pink</item>
+
+    </style>
     <style name="Theme.Instagram" parent="Base.Theme.Instagram" />
+
 </resources>
