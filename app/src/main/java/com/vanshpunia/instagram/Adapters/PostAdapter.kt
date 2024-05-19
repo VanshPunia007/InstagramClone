@@ -1,10 +1,12 @@
 package com.vanshpunia.instagram.Adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.github.marlonlom.utilities.timeago.TimeAgo
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.google.firebase.firestore.toObject
@@ -13,6 +15,7 @@ import com.vanshpunia.instagram.Models.User
 import com.vanshpunia.instagram.R
 import com.vanshpunia.instagram.Utils.USER_NODE
 import com.vanshpunia.instagram.databinding.PostRvBinding
+
 
 class PostAdapter(var context: Context, var postList: ArrayList<Post>) :
     RecyclerView.Adapter<PostAdapter.MyHolder>() {
@@ -35,12 +38,29 @@ class PostAdapter(var context: Context, var postList: ArrayList<Post>) :
                     Glide.with(context).load(user!!.image).placeholder(R.drawable.user).into(holder.binding.profileImage)
                     holder.binding.name.text = user.name
                 }
-            holder.binding.time.text = postList.get(position).time!!
         } catch (e: Exception) {
+            holder.binding.name.text = ""
+        }
+        try {
+            val text = TimeAgo.using(postList.get(position).time!!.toLong())
+            holder.binding.time.text = text
 
+        }catch (e : Exception){
+            holder.binding.time.text = ""
         }
 
         Glide.with(context).load(postList.get(position).postUrl).placeholder(R.drawable.loading).into(holder.binding.postImage)
         holder.binding.caption.text = postList.get(position).caption!!
+        holder.binding.like.setOnClickListener {
+             holder.binding.like.setImageResource(R.drawable.red_like)
+        }
+
+        holder.binding.share.setOnClickListener {
+            var i = Intent(Intent.ACTION_SEND)
+            i.type = "text/plain"
+            i.putExtra(Intent.EXTRA_TEXT, postList.get(position).postUrl)
+            context.startActivity(i)
+        }
     }
 }
+

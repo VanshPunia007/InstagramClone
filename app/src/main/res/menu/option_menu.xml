@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:title="like"
-        android:id="@+id/like"
+        android:id="@+id/s"
         android:icon="@drawable/heart"
         app:showAsAction="always"/>
     <item android:title="chats"
