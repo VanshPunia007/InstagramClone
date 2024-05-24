@@ -27,33 +27,36 @@ class SearchAdapter(var context: Context, var userList: ArrayList<User>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        var isFollow = false
         Glide.with(context).load(userList.get(position).image).into(holder.binding.profileImage)
         holder.binding.name.text = userList.get(position).name
         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
             .whereEqualTo("email", userList.get(position).email).get().addOnSuccessListener {
                 if (it.documents.size == 0) {
-                    holder.binding.follow.text = "Follow"
+                    isFollow = false
                 } else {
                     holder.binding.follow.text = "Following"
+                    isFollow = true
                 }
             }
         holder.binding.follow.setOnClickListener {
-            Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
-                .whereEqualTo("email", userList.get(position).email).get()
-                .addOnSuccessListener {
-                    if (it.documents.size == 0) {
-                        Toast.makeText(context, "Followed " + userList.get(position).name, Toast.LENGTH_SHORT).show()
-                        Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
-                            .document()
-                            .set(userList.get(position))
-                        holder.binding.follow.text = "Following"
-                    } else {
-                        Toast.makeText(context, "Unfollowed " + userList.get(position).name, Toast.LENGTH_SHORT).show()
+            if (isFollow) {
+                Toast.makeText(context, "Unfollowed " + userList.get(position).name, Toast.LENGTH_SHORT).show()
+                Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
+                    .whereEqualTo("email", userList.get(position).email).get()
+                    .addOnSuccessListener {
                         Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
                             .document(it.documents.get(0).id).delete()
                         holder.binding.follow.text = "Follow"
                     }
-                }
+                isFollow = false
+            } else {
+                Firebase.firestore.collection(Firebase.auth.currentUser!!.uid + FOLLOW)
+                    .document()
+                    .set(userList.get(position))
+                holder.binding.follow.text = "Following"
+                isFollow = true
+            }
         }
     }
 }
