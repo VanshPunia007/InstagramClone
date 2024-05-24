@@ -1,6 +1,7 @@
 package com.vanshpunia.instagram
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -19,7 +20,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
+        window.statusBarColor = Color.BLACK
         binding.loginBtn.setOnClickListener {
             if (binding.email.editText?.text.toString().equals("") or
                 binding.password.editText?.text.toString().equals("")

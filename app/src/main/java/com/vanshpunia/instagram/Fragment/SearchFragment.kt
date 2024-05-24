@@ -58,7 +58,7 @@ class SearchFragment : Fragment() {
                 }
                 else{
                     for(i in it.documents){
-                        if(i.id.toString() != Firebase.auth.currentUser!!.uid.toString()){
+                        if(i.id != Firebase.auth.currentUser!!.uid){
                             var user: User = i.toObject<User>()!!
                             tempList.add(user!!)
                         }

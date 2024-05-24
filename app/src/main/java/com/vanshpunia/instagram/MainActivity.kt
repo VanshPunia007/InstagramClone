@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         view = ActivityMainBinding.inflate(layoutInflater)
         setContentView(view.root)
 
-        window.statusBarColor = Color.TRANSPARENT
+        window.statusBarColor = Color.BLACK
         Handler(Looper.getMainLooper()).postDelayed({
             if(FirebaseAuth.getInstance().currentUser == null){
                 startActivity(Intent(this, SignUpActivity::class.java))
