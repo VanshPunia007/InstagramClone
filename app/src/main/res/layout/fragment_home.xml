@@ -7,7 +7,7 @@
     tools:context=".Fragment.HomeFragment"
     android:background="@color/white">
 
-    '<com.google.android.material.appbar.MaterialToolbar
+    <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -55,7 +55,8 @@
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="@+id/user_image"
                 app:layout_constraintTop_toTopOf="@+id/user_image"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintVertical_bias="1.0"
+                tools:ignore="ContentDescription" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/follow_rv"

@@ -9,7 +9,7 @@
 
     <style name="toolbar_text">
 
-        <item name="android:fontFamily">@font/alex_brush</item>
+        <item name="android:fontFamily">@font/grand_hotel</item>
         <item name="android:textSize">35dp</item>
         <item name="android:textColor">@color/pink</item>
 

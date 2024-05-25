@@ -22,6 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:fontFamily="@font/grand_hotel"
         android:gravity="center"
         android:text="Name"
         app:layout_constraintEnd_toEndOf="@+id/user_image"

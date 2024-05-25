@@ -15,6 +15,7 @@ import com.vanshpunia.instagram.Models.User
 import com.vanshpunia.instagram.SignUpActivity
 import com.vanshpunia.instagram.Utils.USER_NODE
 import com.vanshpunia.instagram.Adapters.ViewPagerAdapter
+import com.vanshpunia.instagram.FullscreenImageActivity
 import com.vanshpunia.instagram.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -60,6 +61,11 @@ class ProfileFragment : Fragment() {
             binding.bio.text = user.email
             if(!user.image.isNullOrEmpty()){
                 Picasso.get().load(user.image).into(binding.profileImage)
+            }
+            binding.profileImage.setOnClickListener {
+                val intent = Intent(activity, FullscreenImageActivity::class.java)
+                intent.putExtra("image_uri", user.image.toString())
+                activity?.startActivity(intent)
             }
         }
     }
